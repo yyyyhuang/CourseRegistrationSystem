@@ -2,4 +2,4 @@ import express from 'express';
 
 const router = express.Router();
 
-router.route("/");
+router.route("/courseboard").get(CoursesController.apiGetCourses);
