@@ -1,8 +1,9 @@
 import mysql from 'mysql';
 import util from 'util';
-// const mysql = require('mysql');
-// const util = require('util');
+import dotenv from 'dotenv';
 
+
+dotenv.config();
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: process.env.DB_HOST,
