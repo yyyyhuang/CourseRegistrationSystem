@@ -1,4 +1,4 @@
-import CoursesDao from "../dao/coursesDAO.js";
+import CoursesDAO from "../dao/coursesDAO.js";
 
 
 export default class CoursesController {
@@ -10,15 +10,6 @@ export default class CoursesController {
         const coursePerPage = req.query.coursePerPage ?
             parseInt(req.query.coursePerPage) : 20;
         const page = req.query.page ? parseInt(req.query.page) : 0;
-        // TODO: DOUBLE CHECK SEMSTER FORMAT
-        const semester = req.query.semester ? req.query.semester : "Fall2021"
-        
-        let filters = {};
-        // FILTER TO FIND COURSE BY ID, COURSE BY NAME AND COURSES BY STUDENT ID??
-        if (req.query.nuid) {
-            filters.sid = req.query.nuid;
-        }
-
 
         const { courseList, totalNumCourses } = await CoursesDAO.getAllCourses({page, coursePerPage});
         let response = {
@@ -33,7 +24,7 @@ export default class CoursesController {
     static async apiGetACourse(req, res, next) {
         try {
             let id = req.params.id || {};
-            let course = await CoursesDao.getACourse(id);
+            let course = await CoursesDAO.getACourse(id);
             if(!course) {
                 res.status(404).json({ error : "not found" });
                 return;
@@ -46,14 +37,14 @@ export default class CoursesController {
         
     }
 
-    static async apiregisterCourse(req, res, next) {
+    static async apiRegisterCourse(req, res, next) {
         try{
             const snuid = req.body.snuid;
             const cid = req.body.cid;
             const sectionId = req.body.sectionId;
             const dates = new Date();
 
-            const registerResponse = await CoursesDao.registerCourse(
+            const registerResponse = await CoursesDAO.registerCourse(
                 snuid,
                 cid,
                 sectionId,
