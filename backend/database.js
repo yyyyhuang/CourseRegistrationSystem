@@ -6,11 +6,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: process.env.DB_HOST,
-    port: 3306,
+    // host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS
+    password: process.env.DB_PASS,
+    socketPath:  process.env.DB_INSTANCE_NAME
 });
 
 pool.getConnection((err, connection) => {
@@ -24,9 +24,12 @@ pool.getConnection((err, connection) => {
         if (err.code === 'ECONNREFUSED') {
             console.error('Database connection was refused.')
         }
-    }
-    if (connection) connection.release();
-    return
+        console.log(err)
+        return
+    } 
+    // if (connection) console.log("here");
+    // connection.release();
+    //return
 });
 
 pool.query = util.promisify(pool.query);

@@ -21,10 +21,10 @@ export default class CoursesController {
         res.json(response);
     }
 
-    static async apiGetACourse(req, res, next) {
+    static async apiGetCourseById(req, res, next) {
         try {
             let id = req.params.id || {};
-            let course = await CoursesDAO.getACourse(id);
+            let course = await CoursesDAO.getCoursebyId(id);
             if(!course) {
                 res.status(404).json({ error : "not found" });
                 return;

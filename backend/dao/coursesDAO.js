@@ -19,4 +19,13 @@ export default class CoursesDAO {
         }
         
     }
+
+    static async getCourseById(id){
+        try{
+
+        } catch(e){
+            console.error(`Something wrong in getCourse: ${e}`);
+            throw e;
+        }
+    }
 }
