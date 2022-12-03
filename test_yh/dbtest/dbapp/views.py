@@ -82,7 +82,7 @@ def studentHome(request, sid):
 
 # done!!!!!!!
 def registerCourses(request, sid):
-    context = {}
+    context = {"sid": sid}
     if request.method == "GET":
         if request.GET.get('semester'):
             semester = request.GET.get('semester')
@@ -91,10 +91,7 @@ def registerCourses(request, sid):
             cursor = connection.cursor()
             cursor.execute(sql)
             results = cursor.fetchall()
-            context = {
-                "results": results,
-                "sid": sid
-            }
+            context["results"] = results
     else:
         if 'add' in request.POST.values():
             for key in request.POST.keys():

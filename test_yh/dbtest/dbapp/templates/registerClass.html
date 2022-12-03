@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register</title>
     <style>
     body {
       margin: 0;
@@ -76,9 +76,9 @@
     </style>
 </head>
 <body>
-
+{% if sid %}
 <div class="topnav">
-      <a href="/student"  >Course List</a>
+      <a href="/student/{{sid}}"  >Course List</a>
       <a class="active" href="#home">Register for Classes</a>
       <a href="#user" class="split">Profile</a>
 </div>
@@ -145,7 +145,7 @@
 </table>
 </form>
 {% endif %}
-
+{% endif %}
 
 
 

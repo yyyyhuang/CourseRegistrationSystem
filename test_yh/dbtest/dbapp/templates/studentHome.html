@@ -55,9 +55,10 @@
     </style>
 </head>
 <body>
+ {% if sid %}
   <div class="topnav">
       <a class="active" href="#home">Course List</a>
-      <a href="/registerclass">Register for Classes</a>
+      <a href="/registerclass/{{sid}}">Register for Classes</a>
       <a href="#user" class="split">Profile</a>
   </div>
 
@@ -99,7 +100,7 @@
           </form>
       </div>
   </div>
-
+{% endif %}
 
 </body>
 </html>
