@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Home</title>
     <style>
     body {
       margin: 0;
@@ -57,9 +57,9 @@
 <body>
  {% if sid %}
   <div class="topnav">
-      <a class="active" href="#home">Course List</a>
+      <a class="active" href="/student/{{sid}}">Course List</a>
       <a href="/registerclass/{{sid}}">Register for Classes</a>
-      <a href="#user" class="split">Profile</a>
+      <a href="/student/{{sid}}/profile" class="split">Profile</a>
   </div>
 
   <div style="padding:16px">

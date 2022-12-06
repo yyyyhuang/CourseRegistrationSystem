@@ -19,14 +19,18 @@ def login(request):
             table = request.POST.get('user')
             nuid = request.POST.get('nuid')
             passwords = request.POST.get('password')
-            # sql = """select fname, lname from """ + table + """ where nuid = '""" + nuid + """'"""
             sql = """select fname, lname from """ + table + """ where nuid = '""" + nuid + """' and passwords = '""" + passwords + """'"""
             cursor = connection.cursor()
             cursor.execute(sql)
             user = cursor.fetchone()
-            logging.debug("message")
+            # logging.debug("message")
             if user:
-                newurl = '/student/' + nuid
+                if table == "advisor":
+                    newurl = '/advisorHome' + nuid
+                elif table == 'student':
+                    newurl = '/student/' + nuid
+                else:
+                    newurl = '/admin/' + nuid
                 return redirect(newurl)
             else:
                 return render(request, 'login.html', {})
@@ -108,3 +112,14 @@ def registerCourses(request, sid):
             cursor.execute(sql)
     return render(request, 'registerClass.html', context)
 
+
+def studentProfile(request, sid):
+    sql = """SELECT * FROM student WHERE nuid = """ + sid
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    info = cursor.fetchone()
+    context = {
+        "info": info,
+        "sid": sid
+    }
+    return render(request, 'studentProfile.html', context)

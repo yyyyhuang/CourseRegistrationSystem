@@ -24,6 +24,8 @@ urlpatterns = [
     path('registerclass/<str:sid>', views.registerCourses),
     path('login', views.login),
     path('signup', views.signup),
+    path('student/<str:sid>/profile', views.studentProfile),
+
     path('advisorHome/<str:adid>', advisorViews.advisorHome, name='advisorHome'),
     path('approveRequest/<str:adid>/<str:request_id>', advisorViews.approveRequest, name='approveRequest'),
     path('disapproveRequest/<str:adid>/<str:request_id>', advisorViews.disapproveRequest, name='disapproveRequest'),
