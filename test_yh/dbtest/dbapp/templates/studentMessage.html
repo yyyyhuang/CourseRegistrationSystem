@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <title>Message</title>
     <style>
     body {
       margin: 0;
@@ -52,48 +52,43 @@
     }
 
     tr:nth-child(even){background-color: #f2f2f2}
+    button {
+       background-color: #04AA6D;
+
+        color: white;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+         }
     </style>
 </head>
 <body>
- {% if sid %}
-  <div class="topnav">
-      <a class="active" href="/student/{{sid}}">Course List</a>
+<div class="topnav">
+      <a href="/student/{{sid}}">Course List</a>
       <a href="/registerclass/{{sid}}">Register for Classes</a>
-      <a href="/student/{{sid}}/message">Message</a>
+      <a class="active" href="/student/{{sid}}/message">Message</a>
       <a href="/student/{{sid}}/profile" class="split">Profile</a>
-  </div>
+</div>
 
-  <div style="padding:16px">
-      <h2>Course List</h2>
+<div style="padding:16px">
+      <h2>Messages</h2>
       <div  style="overflow-x:auto;">
+          <a href="/student/{{sid}}/sendmessage" class="button">Send Message</a>
           <form name="form3" id="form3" method="POST">
               {% csrf_token %}
           <table>
           <tr>
-              <th>Course No</th>
-              <th>Course Name</th>
-              <th>Credit</th>
-              <th>Section Id</th>
-              <th>Professor</th>
-              <th>Time</th>
-              <th>Days</th>
-              <th>Building</th>
-              <th>Room</th>
+              <th>Dates</th>
+              <th>Messages</th>
+
             </tr>
             <tbody>
-            {% for d in courses %}
+            {% for d in messages %}
             <tr>
                   <td>{{ d.0 }}</td>
                   <td>{{ d.1 }}</td>
-                  <td>{{ d.2 }}</td>
-                  <td>{{ d.3 }}</td>
-                  <td>{{ d.4 }}</td>
-                  <td>{{ d.5 }}</td>
-                  <td>{{ d.6 }}</td>
-                  <td>{{ d.7 }}</td>
-                  <td>{{ d.8 }}</td>
-                  <td> <input type="submit" name="drop_{{d.9}}" value="drop"></td>
-              </tr>
+
             {% endfor %}
             </tbody>
           </table>
@@ -101,7 +96,6 @@
           </form>
       </div>
   </div>
-{% endif %}
 
 </body>
 </html>

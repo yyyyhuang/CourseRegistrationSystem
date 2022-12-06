@@ -25,6 +25,8 @@ urlpatterns = [
     path('login', views.login),
     path('signup', views.signup),
     path('student/<str:sid>/profile', views.studentProfile),
+    path('student/<str:sid>/message', views.viewMessages),
+    path('student/<str:sid>/sendmessage', views.sendMessage, name='s-sendMsg'),
 
     path('advisorHome/<str:adid>', advisorViews.advisorHome, name='advisorHome'),
     path('approveRequest/<str:adid>/<str:request_id>', advisorViews.approveRequest, name='approveRequest'),

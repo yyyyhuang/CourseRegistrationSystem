@@ -5,6 +5,7 @@ from datetime import date
 import logging
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 # Create your views here.
 # DONE!!
@@ -123,6 +124,50 @@ def studentProfile(request, sid):
         "sid": sid
     }
     return render(request, 'studentProfile.html', context)
+
+
+def viewMessages(request, sid):
+    sql = """select dates, messages, status, ntid, advid from send_msg where s_id = """ + sid + """ order by dates"""
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    messages = cursor.fetchall()
+    context = {
+        "sid": sid,
+        "messages": messages,
+    }
+    return render(request, 'studentMessage.html', context)
+
+
+def sendMessage(request, sid):
+    context = {
+        'sid': sid
+    }
+    if request.method == "POST":
+        msg = request.POST.get("message")
+        dates = str(date.today())
+        logger = logging.getLogger('django')
+        try:
+            adsql = """select advid from advice where s_id = """ + sid
+            cursor = connection.cursor()
+            cursor.execute(adsql)
+            res = cursor.fetchone()
+            advid = str(res[0])
+            logger.info(advid)
+            sql = """insert into send_msg (s_id, advid, dates, messages, status) values ('""" + sid + """', '""" \
+                  + advid + """', '""" + dates + """', '""" + msg + """', 'unread')"""
+            cursor.execute(sql)
+            messages.success(request, "Successfully sent message")
+            return redirect('/student/' + sid + '/message')
+        except Exception as e:
+            logger.error(e)
+            messages.error(request, "Failed to send message")
+            return render(request, 'studentSend.html', context)
+    else:
+        return render(request, 'studentSend.html', context)
+
+
+
+
 
 
 
