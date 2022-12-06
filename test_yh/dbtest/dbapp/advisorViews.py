@@ -43,13 +43,14 @@ def allStudents(request, adid):
         }
         return render(request, 'allStudents.html', context)
 
-def viewDetails(request, sid):
+def viewDetails(request, adid, sid):
     sql = """select course_no, course_name, credit, sectionid, professor, class_time, days, building, room from course where 
     courseid in (select courseid from adds where nuid = """ + sid + """) and courseid not in (select courseid from drops where nuid = """ + sid + """)"""
     cursor = connection.cursor()
     cursor.execute(sql)
     courses = cursor.fetchall()
     context = {
+        "adid": adid,
         "sid": sid,
         "courses": courses,
     }

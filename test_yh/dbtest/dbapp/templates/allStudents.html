@@ -97,7 +97,7 @@
                   <td>{{ d.5 }}</td>
             {% if adid %}
                   <td>
-                    <a href="{% url 'viewDetails' sid=d.0 %}" class="button">View Registration</a>
+                    <a href="{% url 'viewDetails' adid=adid sid=d.0 %}" class="button">View Registration</a>
                     <a href="{% url 'sendMsg' adid=adid sid=d.0 %}" class="button">Send Message</a>
                   </td>
               </tr>
