@@ -107,15 +107,6 @@ CREATE TABLE send_msg(
     CONSTRAINT fk_msgadvid FOREIGN KEY (advid) REFERENCES advisor (nuid) ON DELETE CASCADE
 );
 
--- DECLINE table
-CREATE TABLE decline(
-    s_id INT,
-    advid INT,
-    PRIMARY KEY (s_id, advid),
-    -- FOREIGN KEY
-    CONSTRAINT fk_decstudentid FOREIGN KEY (s_id) REFERENCES student (nuid) ON DELETE CASCADE,
-    CONSTRAINT fk_decadvid FOREIGN KEY (advid) REFERENCES advisor (nuid) ON DELETE CASCADE
-);
 
 -- ADVICE table
 CREATE TABLE advice(
@@ -145,13 +136,24 @@ AS SELECT advid, s_id, nstatus, dates
    FROM notifications
    WHERE nstatus = "unread";
 
--- NEW_MSG trigger when INSERT ON DECLINE
+
+-- NEW_REQ trigger when INSERT ON ADDS
 delimiter $$ ;
-CREATE TRIGGER new_msg
+CREATE TRIGGER new_req
 AFTER
-INSERT ON decline FOR EACH ROW
+INSERT ON adds FOR EACH ROW
 BEGIN
-	INSERT INTO send_msg(s_id, advid, dates, messages) values (new.s_id, new.advid, NOW(), "Your schedule is declined");
+	INSERT INTO requests(courseid, nuid, dates, type, status) values (new.courseid, new.nuid, NOW(), "add", "pending");
+END; $$
+delimiter ; $$
+
+-- NEW_REQ trigger when INSERT ON DROPS
+delimiter $$ ;
+CREATE TRIGGER new_req_drop
+AFTER
+INSERT ON drops FOR EACH ROW
+BEGIN
+	INSERT INTO requests(courseid, nuid, dates, type, status) values (new.courseid, new.nuid, NOW(), "drop", "pending");
 END; $$
 delimiter ; $$
 

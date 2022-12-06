@@ -144,31 +144,6 @@ VALUES ("10006", "70003", "2022-09-07", "Hi advisor, I want to add a class", "un
 INSERT INTO send_msg (s_id, advid, dates, messages, status)
 VALUES ("10007", "70004", "2022-09-03", "Hi advisor, I want to add a class", "unread");
 
--- DECLINE table
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10001", "70001");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10002", "70001");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10003", "70002");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10004", "70002");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10005", "70003");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10006", "70003");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10007", "70004");
-
-INSERT INTO decline (s_id, advid)
-VALUES ("10008", "70008");
 
 -- ADVICE table
 
