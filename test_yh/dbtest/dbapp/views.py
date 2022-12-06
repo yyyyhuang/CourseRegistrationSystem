@@ -26,7 +26,7 @@ def login(request):
             # logging.debug("message")
             if user:
                 if table == "advisor":
-                    newurl = '/advisorHome' + nuid
+                    newurl = '/advisorHome/' + nuid
                 elif table == 'student':
                     newurl = '/student/' + nuid
                 else:
