@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from dbapp import views, advisorViews
+from dbapp import views, advisorViews, adminViews
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -36,12 +36,12 @@ urlpatterns = [
     path('viewMessages/<str:adid>', advisorViews.viewMessages, name='viewMessages'),
     path('advisorProfile/<str:adid>', advisorViews.advisorProfile, name='advisorProfile'),
 
-    path('admin/<str:admid>', views.adminHome, name='admin'),
-    path('courseList/<str:admid>', views.courseList),
-    path('modifyCourse/<str:admid>/<str:courseid>', views.modifyCourse, name='modifyCourse'),
-    path('newCourse/<str:admid>', views.newCourse, name='newCourse'),
-    path('courseStat/<str:admid>', views.courseStat, name = 'courseStat'),
-    path('stats/<str:admid>/<str:courseid>', views.stats, name='stats')
+    path('admin/<str:admid>', adminViews.adminHome, name='admin'),
+    path('courseList/<str:admid>', adminViews.courseList),
+    path('modifyCourse/<str:admid>/<str:courseid>', adminViews.modifyCourse, name='modifyCourse'),
+    path('newCourse/<str:admid>', adminViews.newCourse, name='newCourse'),
+    path('courseStat/<str:admid>', adminViews.courseStat, name = 'courseStat'),
+    path('stats/<str:admid>/<str:courseid>', adminViews.stats, name='stats')
 
 
 
