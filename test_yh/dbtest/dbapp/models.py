@@ -75,6 +75,15 @@ class Decline(models.Model):
         db_table = 'decline'
         unique_together = (('s', 'advid'),)
 
+class Approve(models.Model):
+    s = models.OneToOneField('Student', models.DO_NOTHING, db_column='s_Id', primary_key=True)  # Field name made lowercase.
+    advid = models.ForeignKey(Advisor, models.DO_NOTHING, db_column='advId')  # Field name made lowercase.
+
+    class Meta:
+        # managed = False
+        db_table = 'approve'
+        unique_together = (('s', 'advid'),)
+
 
 class Department(models.Model):
     deptid = models.IntegerField(db_column='deptId', primary_key=True)  # Field name made lowercase.
@@ -95,25 +104,35 @@ class Drops(models.Model):
         # managed = False
         db_table = 'drops'
 
-
-class Notifications(models.Model):
-    ntid = models.AutoField(db_column='ntId', primary_key=True)  # Field name made lowercase.
-    advid = models.ForeignKey(Advisor, models.DO_NOTHING, db_column='advId', blank=True, null=True)  # Field name made lowercase.
-    s = models.ForeignKey('Student', models.DO_NOTHING, db_column='s_Id', blank=True, null=True)  # Field name made lowercase.
+class Requests(models.Model):
+    rid = models.AutoField(primary_key=True)
+    courseid = models.ForeignKey(Course, models.DO_NOTHING, db_column='courseid', blank=True, null=True)
+    nuid = models.ForeignKey('Student', models.DO_NOTHING, db_column='nuid', blank=True, null=True)
     dates = models.DateField(blank=True, null=True)
-    nstatus = models.CharField(db_column='nStatus', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    type = models.CharField(max_length=15, blank=True, null=True)
+    status = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         # managed = False
-        db_table = 'notifications'
+        db_table = 'requests'
+
+class Advice(models.Model):
+    aid = models.AutoField(db_column='ntId', primary_key=True)  # Field name made lowercase.
+    advid = models.ForeignKey(Advisor, models.DO_NOTHING, db_column='advId', blank=True, null=True)  # Field name made lowercase.
+    s = models.ForeignKey('Student', models.DO_NOTHING, db_column='s_Id', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        # managed = False
+        db_table = 'advice'
 
 
 class SendMsg(models.Model):
     ntid = models.AutoField(db_column='ntId', primary_key=True)  # Field name made lowercase.
-    s = models.ForeignKey('Student', models.DO_NOTHING, db_column='s_Id', blank=True, null=True)  # Field name made lowercase.
-    advid = models.ForeignKey(Advisor, models.DO_NOTHING, db_column='advId', blank=True, null=True)  # Field name made lowercase.
+    s = models.ForeignKey('Student', models.DO_NOTHING, db_column='s_id', blank=True, null=True)  # Field name made lowercase.
+    advid = models.ForeignKey(Advisor, models.DO_NOTHING, db_column='advid', blank=True, null=True)  # Field name made lowercase.
     dates = models.DateField(blank=True, null=True)
     messages = models.CharField(max_length=125, blank=True, null=True)
+    status = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         # managed = False

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2}
+    button {
+       background-color: #04AA6D;
+
+        color: white;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+         }
+    </style>
+</head>
+<body>
+  <div class="topnav">
+      <a class="active" href="#home">Requests</a>
+      <a href="/allStudents/{{adid}}">Students</a>
+      <a href="/viewMessages/{{adid}}">Messages</a>
+      <a href="/advisorProfile/{{adid}}" class="split">Profile</a>
+  </div>
+
+  <div style="padding:16px">
+      <h2>All Students</h2>
+      <div  style="overflow-x:auto;">
+          <form name="form3" id="form3" method="POST">
+              {% csrf_token %}
+          <table>
+          <tr>
+              <th>Course No.</th>
+              <th>Course Name</th>
+              <th>Credit</th>
+              <th>Section Id</th>
+              <th>Professor</th>
+              <th>Class Time</th>
+              <th>Days</th>
+              <th>Building</th>
+              <th>Room</th>
+
+            </tr>
+            <tbody>
+            {% for d in courses %}
+            <tr>
+                  <td>{{ d.0 }}</td>
+                  <td>{{ d.1 }}</td>
+                  <td>{{ d.2 }}</td>
+                  <td>{{ d.3 }}</td>
+                  <td>{{ d.4 }}</td>
+                  <td>{{ d.5 }}</td>
+                  <td>{{ d.6 }}</td>
+                  <td>{{ d.7 }}</td>
+                  <td>{{ d.8 }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+
+          </form>
+      </div>
+  </div>
+
+</body>
+</html>

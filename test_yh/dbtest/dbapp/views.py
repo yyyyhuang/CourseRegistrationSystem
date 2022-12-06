@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.db import connection
-from .models import Course
+from .models import Course, Student, Advice, Advisor, Adds, Drops, Requests, Decline, Approve
 from datetime import date
 import logging
-
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 # Create your views here.
-#DONE!!1
+# DONE!!
 def homePage(request):
     return render(request, 'home.html', {})
 
@@ -32,6 +33,10 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'login.html', {})
 
+# def logout(request):
+#     logout(request)
+#     reqiest.user = None
+#     return redirect('/')
 
 # DONE!!!
 def signup(request):
@@ -102,7 +107,4 @@ def registerCourses(request, sid):
             cursor = connection.cursor()
             cursor.execute(sql)
     return render(request, 'registerClass.html', context)
-
-
-
 
