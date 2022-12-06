@@ -35,4 +35,14 @@ urlpatterns = [
     path('replyMsg/<str:adid>/<str:sid>/<str:ntid>', advisorViews.replyMsg, name='replyMsg'),
     path('viewMessages/<str:adid>', advisorViews.viewMessages, name='viewMessages'),
     path('advisorProfile/<str:adid>', advisorViews.advisorProfile, name='advisorProfile'),
+
+    path('admin/<str:admid>', views.adminHome, name='admin'),
+    path('courseList/<str:admid>', views.courseList),
+    path('modifyCourse/<str:admid>/<str:courseid>', views.modifyCourse, name='modifyCourse'),
+    path('newCourse/<str:admid>', views.newCourse, name='newCourse'),
+    path('courseStat/<str:admid>', views.courseStat, name = 'courseStat'),
+    path('stats/<str:admid>/<str:courseid>', views.stats, name='stats')
+
+
+
 ]

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modify Course</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2}
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    button:hover, a:hover {
+        opacity: 0.7;
+    }
+
+    .addButton {
+      border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: rgb(172, 170, 170);
+        text-align: center;
+        cursor: pointer;
+        width: 200px;
+        font-size: 18px;
+    }
+    .pos{
+        position:relative; 
+        left: 15px; 
+        top: 10px;
+     
+    }
+    </style>
+</head>
+<body>
+    {% if admid %}
+    <div class="topnav">
+        <a class="active" href="/admin/{{admin.0.0}}">My Profile</a>
+        <a href="/courseList/{{admin.0.0}}">Course List</a>
+        <a href="/courseStat/{{admin.0.0}}">Course Stats</a>
+    </div> 
+
+    <h2 class="pos"> Add A New Course </h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <label>Course Id:    </label>
+            <input type="text" placeholder="Enter Course Id" name="courseid" required>
+            <br>
+            <br>
+            <label>Course No:    </label>
+            <input type="text" placeholder="Enter Course Number" name="courseno" required>
+            <br>
+            <br>
+            <label>Semester:     </label>
+            <input type="text" placeholder="Enter Semester" name="semester" required>
+            <br>
+            <br>
+            <label>Course Name:  </label>
+            <input type="text" placeholder="Enter Course Name" name="coursename" required>
+            <br>
+            <br>
+            <label>Section Id:    </label>
+            <input type="text" placeholder="Enter Section Id" name="sectionid" required>
+            <br>
+            <br>
+            <label>Credit:       </label>
+            <input type="text" placeholder="Enter Credit" name="credit" required>
+            <br>
+            <br>
+            <label>Department:   </label>
+            <input type="text" placeholder="Enter Department" name="dno" required>
+            <br>
+            <br>
+            <label>Professor:    </label>
+            <input type="text" placeholder="Enter Professor" name="professor" required>
+            <br>
+            <br>
+            <label>Day:          </label>
+            <input type="text" placeholder="Enter Day" name="day" required>
+            <br>
+            <br>
+            <label>Time:         </label>
+            <input type="text" placeholder="Enter Time" name="time" required>
+            <br>
+            <br>
+            <label>Capacity:     </label>
+            <input type="text" placeholder="Enter Capacity" name="capacity" required>
+            <br>
+            <br>
+            <label>Waitlist:     </label>
+            <input type="text" placeholder="Enter Waitlist" name="waitlist" required>
+            <br>
+            <br>
+            <label>Building:     </label>
+            <input type="text" placeholder="Enter Building" name="building" required>
+            <br>
+            <br>
+            <label>Room:         </label>
+            <input type="text" placeholder="Enter Room" name="room" required>
+            <br>
+            <br>
+            <label>Course Description:    </label>
+            <input type="text" placeholder="Enter Description" name="description" required>
+            
+            <button class="pos" type="submit">Create</button>
+        </div>
+    </form>
+
+    {% endif %}
+</body>
+
+</html>
