@@ -1,31 +1,70 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Khory Register</title>
     <style>
-         body {
-         text-align: center;
+         .body {
+            display: flex;
+            position: relative;
          }
 
-          a.button {
-            background-color: #04AA6D;
+         .card {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              justify-content: center;
+              text-align: center;
+              background-color: #253b56;
+              border-radius: 8px;
+         }
+
+         .card-body {
+            margin: 40px;
+         }
+
+         .card-title {
             color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
+         }
+
+         .btns {
+            margin-top: 30px;
+         }
+
+          .button {
+              background-color: white;
+              border: white;
+              border-style: solid;
+              font-weight: bold;
+              color: #253b56;
+              border-radius: 4px;
+              padding: 10px 15px;
           }
 
-          a.button:hover {
-            opacity: 0.8;
+          .button:hover {
+              background-color: white;
+              border-color: #253b56;
+              border-style: solid;
+              color: #253b56;
           }
       </style>
 </head>
 <body>
-    <h2>Welcome to Khory Registration System</h2>
-    <a href="/login" class="button">Login</a>
-    <a href="/signup" class="button">Sign Up</a>
+    <div class="homeContainer">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Welcome to Khory Registration System</h2>
+                <div class="btns">
+                    <a href="/login" class="button">Login</a>
+                    <a href="/signup" class="button">Sign Up</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>

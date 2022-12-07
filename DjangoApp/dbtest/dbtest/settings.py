@@ -89,32 +89,43 @@ WSGI_APPLICATION = 'dbtest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-import pymysql # noqa: 402
-pymysql.version_info = (1, 4, 6, 'final', 0) # change mysql client version
-pymysql.install_as_MySQLdb()
+# import pymysql # noqa: 402
+# pymysql.version_info = (1, 4, 6, 'final', 0) # change mysql client version
+# pymysql.install_as_MySQLdb()
 
-if os.getenv('GAE_APPLICATION', None):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/db-group8:us-west1:higher-group8',
-            'USER': 'root',
-            'PASSWORD': 'group8',
-            'NAME': 'new',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'new',
-            'USER': 'root',
-            'PASSWORD': 'group8',
-            'HOST': '34.145.88.164',
-            'PORT': '3306'
-        }
-    }
+# if os.getenv('GAE_APPLICATION', None):
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '/cloudsql/db-group8:us-west1:higher-group8',
+#             'USER': 'root',
+#             'PASSWORD': 'group8',
+#             'NAME': 'new',
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'new',
+#             'USER': 'root',
+#             'PASSWORD': 'group8',
+#             'HOST': '34.145.88.164',
+#             'PORT': '3306'
+#         }
+#     }
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'new',
+        'USER': 'root',
+        'PASSWORD': 'group8',
+        'HOST': '34.145.88.164',
+        'PORT': '3306'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

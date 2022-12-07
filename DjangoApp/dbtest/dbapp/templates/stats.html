@@ -1,20 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>Course Stat</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Title</title>
     <style>
-    body {
+    .body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
     }
-
-    .topnav {
-      overflow: hidden;
-      background-color: #333;
+    .navbar {
+        display: flex;
+        background-color: #253b56;
+        color: white;
+        height: 80px;
+        align-items: center;
     }
 
-    .topnav a {
+    .navbar-brand {
+        font-size: 25px;
+    }
+
+    .navbar a {
       float: left;
       color: #f2f2f2;
       text-align: center;
@@ -23,86 +32,114 @@
       font-size: 17px;
     }
 
-    .topnav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
-
-    .topnav a.active {
-      background-color: #04AA6D;
+    .navbar a:hover {
       color: white;
+      transform: scale(1.1);
     }
 
-    .topnav a.split {
+    .navbar a.active {
+      display: flex;
+      background-color: white;
+      color: #253b56;
+      height: 80px;
+      align-items: center;
+      font-size: 22px;
+    }
+
+    .navbar a.split {
       float: right;
-      background-color: #04AA6D;
       color: white;
+    }
+
+    .container {
+        display: flex;
+        align-items: center
+        justify-content: center;
+        flex-direction: column;
+        width: 75%;
+        padding-top: 20px;
+        color: #253b56;
     }
 
     table {
+      margin-top: 8px;
       border-collapse: collapse;
       border-spacing: 0;
       width: 100%;
       border: 1px solid #ddd;
+      font-size: 18px;
     }
 
     th, td {
       text-align: left;
-      padding: 8px;
+      padding: 2px;
     }
 
-    tr:nth-child(even){background-color: #f2f2f2}
-
-    .title {
-        color: grey;
-        font-size: 18px;
-    }
-    button {
-        border: none;
-        outline: 0;
-        display: inline-block;
-        padding: 8px;
-        color: white;
-        background-color: #000;
-        text-align: center;
-        cursor: pointer;
-        width: 100%;
-        font-size: 18px;
+    tr:nth-child(even){background-color: #f2f2f2
     }
 
-    button:hover, a:hover {
-        opacity: 0.7;
-    }
+   .button {
+         background-color: #253b56;
+      border: #253b56;
+      border-style: solid;
+      font-weight: bold;
+      color: white;
+      border-radius: 4px;
+      padding: 10px 15px;
+      cursor: pointer;
+   }
 
-    .addButton {
-      border: none;
-        outline: 0;
-        display: inline-block;
-        padding: 8px;
-        color: white;
-        background-color: rgb(172, 170, 170);
-        text-align: center;
-        cursor: pointer;
-        width: 200px;
-        font-size: 18px;
-    }
-    .pos{
-        position:relative; 
-        left: 15px; 
-        top: 10px;
-     
+     .button:hover {
+          background-color: white;
+          border-color: #253b56;
+          border-style: solid;
+          color: #253b56;
+      }
+    input {
+      background-color: white;
+      border: #253b56;
+      border-style: solid;
+      font-weight: bold;
+      color: white;
+      border-radius: 4px;
+      padding: 10px 15px;
+      cursor: pointer;
+  }
+
+       input:hover {
+          background-color: white;
+          border-color: #253b56;
+          border-style: solid;
+          color: #253b56;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+      }
+
+       .items {
+        display: flex;
+        flex-direction: column;
+      }
+
+    .pos {
+        color: #253b56;
+        font-size: 25px;
+        font-weight: bold;
     }
     </style>
 </head>
 <body>
     {% if admid %}
     {% if courseid %}
-    <div class="topnav">
-        <a class="active" href="/admin/{{admin.0.0}}">My Profile</a>
-        <a href="/courseList/{{admin.0.0}}">Course List</a>
-        <a href="/courseStat/{{admin.0.0}}">Course Stats</a>
+    <div class="navbar">
+      <span class="navbar-brand">Admin Home</span>
+      <a href="/admin/{{admid}}">My Profile</a>
+      <a href="/courseList/{{admid}}">Course List</a>
+      <a class="active" href="/courseStat/{{admid}}">Course Stats</a>
     </div>
- 
+ <div class="container">
     <h2 class="pos"> Statistics of Course {{course.0.0}} </h2>
     <div  style="overflow-x:auto;">
         <form name="form3" id="form3" method="POST">
@@ -143,6 +180,7 @@
     
     {% endif %}
     {% endif %}
+ </div>
 </body>
 
 </html>

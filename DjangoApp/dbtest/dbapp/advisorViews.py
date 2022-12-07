@@ -70,9 +70,9 @@ def sendMsg(request, adid, sid):
         except Exception as e:
             logger.error(e)
             messages.error(request, "Failed to send message")
-            return render(request, 'sendMessage.html', {})
+            return render(request, 'sendMessage.html', {"adid": adid, "sid": sid})
     else:
-        return render(request, 'sendMessage.html', {})
+        return render(request, 'sendMessage.html', {"adid": adid, "sid": sid})
 
 def replyMsg(request, adid, sid, ntid):
     if request.method == "POST":
@@ -91,9 +91,9 @@ def replyMsg(request, adid, sid, ntid):
         except Exception as e:
             logger.error(e)
             messages.error(request, "Failed to send message")
-            return render(request, 'sendMessage.html', {})
+            return render(request, 'sendMessage.html', {"adid": adid, "sid": sid})
     else:
-        return render(request, 'sendMessage.html', {})
+        return render(request, 'sendMessage.html', {"adid": adid, "sid": sid})
 
 def viewMessages(request, adid):
     sql = """select s.nuid, concat(s.fname,' ',s.lname) as name, m.dates, m.messages, m.status, m.ntid from send_msg as m join student as s on s.nuid = m.s_id where s.nuid in (select s_id from advice where advid = """ + adid + """) order by m.dates"""

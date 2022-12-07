@@ -1,25 +1,78 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign up</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Login</title>
     <style>
-        Body {
-        font-family: Calibri, Helvetica, sans-serif;
-        }
-        button {
-               background-color: #04AA6D;
+    .body {
+      font-family: Calibri, Helvetica, sans-serif;
+      display: flex;
+      position: relative;
+      color: #253b56
+    }
 
-                color: white;
-                padding: 15px;
-                margin: 10px 0px;
-                border: none;
-                cursor: pointer;
-                 }
+     .box {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              justify-content: center;
+              text-align: center;
+              background-color: #253b56;
+              border-radius: 8px;
+        }
+     input[type=text], input[type=password] {
+            width: 90%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid #253b56;
+            box-sizing: border-box;
+            justify-content: center;
+        }
+
+        .items {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+        }
+
+        button {
+              background-color: #253b56;
+              border: #253b56;
+              border-style: solid;
+              font-weight: bold;
+              color: white;
+              border-radius: 4px;
+              padding: 10px 15px;
+              cursor: pointer;
+          }
+
+         button:hover {
+              background-color: white;
+              border-color: #253b56;
+              border-style: solid;
+              color: #253b56;
+          }
+      .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            margin: 10px 5px;
+        }
+
+
+     .container {
+            padding: 25px;
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
-    <h1>Sign up Form</h1>
+    <div class="box">
+    <h2 style="color:white">Sign up Form</h2>
     <form method="POST">
         {% csrf_token %}
         <div class="container">
@@ -29,26 +82,39 @@
             <input type="radio" name="user" id="advisor" value="advisor">
             <label for="advisor">Advisor</label>
             <br>
+            <div class="items">
             <label>NUID: </label>
             <input type="text" placeholder="Enter NUID" name="nuid" required>
             <br>
+            </div>
+            <div class="items">
             <label>First Name: </label>
             <input type="text" placeholder="Enter First Name" name="fname" required>
             <br>
+            </div>
+            <div class="items">
             <label>Last Name: </label>
             <input type="text" placeholder="Enter Last Name" name="lname" required>
             <br>
+            </div>
+            <div class="items">
             <label>Email: </label>
             <input type="text" placeholder="Enter Email" name="email" required>
             <br>
+            </div>
+            <div class="items">
             <label>Department No</label>
             <input type="text" placeholder="Enter Department No" name="dno" required>
             <br>
+            </div>
+            <div class="items">
             <label>Password: </label>
             <input type="password" placeholder="Enter Password" name="password" required>
             <br>
+            </div>
             <button type="submit">Sign Up</button>
         </div>
     </form>
+    </div>
 </body>
 </html>
