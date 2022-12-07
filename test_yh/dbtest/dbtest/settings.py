@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os.path
+from pathlib import Path
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ SECRET_KEY = '4gx!rbkd7%ci^1phy#29p$g1@zeo5)rn%ljj0)h-_xvo@m^psy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 LOGGING = {
     "version": 1,
@@ -87,17 +89,31 @@ WSGI_APPLICATION = 'dbtest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+import pymysql # noqa: 402
+pymysql.version_info = (1, 4, 6, 'final', 0) # change mysql client version
+pymysql.install_as_MySQLdb()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new',
-        'USER': 'root',
-        'PASSWORD': 'group8',
-        'HOST': '34.145.88.164',
-        'PORT': '3306'
+if os.getenv('GAE_APPLICATION', None):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/db-group8:us-west1:higher-group8',
+            'USER': 'root',
+            'PASSWORD': 'group8',
+            'NAME': 'new',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'new',
+            'USER': 'root',
+            'PASSWORD': 'group8',
+            'HOST': '34.145.88.164',
+            'PORT': '3306'
+        }
+    }
 
 
 # Password validation
@@ -135,5 +151,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
